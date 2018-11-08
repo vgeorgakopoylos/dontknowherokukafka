@@ -1,1 +1,1 @@
-web: python \TheMovieDB\httpServier.py
+web: python ./TheMovieDB/httpServier.py
