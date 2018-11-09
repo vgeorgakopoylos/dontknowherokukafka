@@ -44,7 +44,8 @@ class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 initialization()
 Handler = MyRequestHandler;
-server = SocketServer.TCPServer(('0.0.0.0', 80), Handler);
+server = SocketServer.TCPServer(('0.0.0.0', os.environ['PORT']), Handler);
+
 server.serve_forever();	
 
 		
