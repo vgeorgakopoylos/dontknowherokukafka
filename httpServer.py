@@ -16,8 +16,12 @@ def initialization():
 	#config.read(relDir+'\conf\configuration.cfg');	
 	print('avavava:'+os.path.dirname(os.path.abspath(__file__)));
 	files = os.listdir(os.path.dirname(os.path.abspath(__file__)))
-	for name in files:
-		print(name)	
+	for x in os.listdir('.'):
+		if os.path.isfile(x): print 'f-', x
+		elif os.path.isdir(x): print 'd-', x
+		elif os.path.islink(x): print 'l-', x
+		else: print '---', x
+		
 	config.read(os.path.join(os.path.dirname(__file__)+'/conf', r"configuration.cfg"))
 	defaultPage = config.get('System','defaultPage');
 	mainFile = config.get('System','mainFile');
