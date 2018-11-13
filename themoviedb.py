@@ -18,7 +18,7 @@ def initialization():
 	
 	config = configparser.ConfigParser();
 	config.read(os.path.join(os.path.dirname(__file__), 'conf', 'configuration.cfg'));
-	logging.basicConfig(filename= os.path.join(os.path.dirname(__file__), 'logs', 'app.log'), filemode='w', format='%(name)s - %(levelname)s - %(message)s');
+	#logging.basicConfig(filename= os.path.join(os.path.dirname(__file__), 'logs', 'app.log'), filemode='w', format='%(name)s - %(levelname)s - %(message)s');
 	version = config.get('General','version3');
 	mainURL = config.get('General','mainurl');
 	apiKey = config.get('General','apikeyV3');
