@@ -16,7 +16,7 @@ def initialization():
 	#config.read(relDir+'\conf\configuration.cfg');	
 	print('avavava:'+os.path.dirname(os.path.abspath(__file__))+'/conf/');
 	files = os.listdir(os.path.dirname(os.path.abspath(__file__))+'/conf/')
-	for x in os.listdir('.'):
+	for x in os.listdir(os.path.dirname(os.path.abspath(__file__))+'/conf/'):
 		if os.path.isfile(x):
 			print ('file:'+ x)
 		elif os.path.isdir(x):
