@@ -1,5 +1,7 @@
-import SimpleHTTPServer
-import SocketServer
+#import SimpleHTTPServer
+#import SocketServer
+import http.server
+import socketserver
 import themoviedb
 import os
 import configparser
@@ -38,13 +40,13 @@ def decideURL(requestURL):
 	else:
 		return mainFile +requestURL[1:findWrapper(requestURL,'?')]+'('+breakdownParams(requestURL)+')'	
   
-class MyRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
 	def do_GET(self):
-		return SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self.wfile.write(eval(decideURL(self.path))));
+		 return http.server.SimpleHTTPRequestHandler.do_GET(self.wfile.write(eval(decideURL(self.path))));
 
 initialization()
 Handler = MyRequestHandler;
-server = SocketServer.TCPServer(('', os.environ['PORT']), Handler);
+server = socketserver.TCPServer(('', int(os.environ['PORT'])), Handler);
 
 server.serve_forever();	
 
