@@ -26,7 +26,7 @@ def initialization():
 		else: 
 			print ('dontknow:'+ x)
 		
-	config.read(os.path.join(os.path.dirname(__file__)+'/conf', r"configuration.cfg"))
+	config.read(os.path.join(os.path.dirname(__file__)+'/conf/', r"configuration.cfg"))
 	defaultPage = config.get('System','defaultPage');
 	mainFile = config.get('System','mainFile');
 
