@@ -17,9 +17,8 @@ def initialization():
 	global imageWidth;
 	
 	config = configparser.ConfigParser();
-	relDir = os.path.dirname(os.path.abspath(__file__))
-	config.read(relDir+'\conf\configuration.cfg');	
-	logging.basicConfig(filename= relDir + '\\logs\\app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s');
+	config.read(os.path.join(os.path.dirname(__file__), 'conf', 'configuration.cfg'));
+	logging.basicConfig(filename= os.path.join(os.path.dirname(__file__), 'logs', 'app.log'), filemode='w', format='%(name)s - %(levelname)s - %(message)s');
 	version = config.get('General','version3');
 	mainURL = config.get('General','mainurl');
 	apiKey = config.get('General','apikeyV3');

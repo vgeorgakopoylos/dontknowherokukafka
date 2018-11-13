@@ -12,21 +12,7 @@ def initialization():
 	global mainFile;
 
 	config = configparser.ConfigParser();
-	#relDir = os.path.dirname(os.path.abspath(__file__))
-	#config.read(relDir+'\conf\configuration.cfg');	
-	print('avavava:'+os.path.dirname(os.path.abspath(__file__)));
-#	files = os.listdir(os.path.dirname(os.path.abspath(__file__)))
-#	for x in os.listdir('.'):
-#		if os.path.isfile(x):
-#			print ('file:'+ x)
-#		elif os.path.isdir(x):
-#			print ('dir:'+ x)
-#		elif os.path.islink(x):
-#			print ('link:'+ x)
-#		else: 
-#			print ('dontknow:'+ x);
-	print('avavava:'+os.path.join(os.path.dirname(__file__), 'conf', 'configuration.cfg'))
-	config.read(os.path.join(os.path.dirname(__file__), 'conf', 'configuration.cfg'))
+	config.read(os.path.join(os.path.dirname(__file__), 'conf', 'configuration.cfg'));
 	defaultPage = config.get('System','defaultPage');
 	mainFile = config.get('System','mainFile');
 
