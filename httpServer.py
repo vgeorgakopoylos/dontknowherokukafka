@@ -39,10 +39,11 @@ def decideURL(requestURL):
 		return mainFile  + defaultPage +'()';
 	else:
 		return mainFile +requestURL[1:findWrapper(requestURL,'?')]+'('+breakdownParams(requestURL)+')'	
-  
-class MyRequestHandler(http.server.SimpleHTTPRequestHandler):
+ 
+class MyRequestHandler(http.server.BaseHTTPRequestHandler):
 	def do_GET(self):
-		 return http.server.SimpleHTTPRequestHandler.do_GET(self.wfile.write(eval(decideURL(self.path))));
+		 return http.server.BaseHTTPRequestHandler.send_response(self,self.wfile.write(eval(decideURL(self.path))));
+		 
 
 initialization()
 Handler = MyRequestHandler;

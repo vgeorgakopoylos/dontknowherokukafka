@@ -66,7 +66,7 @@ def producePagingHTML(totalViewPages, pageTag, placeholder, upcomingMoviesPages,
 def upcomingMovies(moviePage=1):
 	initialization();
 	
-	html = '<!DOCTYPE html><html><head><link rel="stylesheet" type="text/css" href="mystyle.css"></head><body><div class="centered"><table>'
+	html = '<!DOCTYPE html><html><head><link rel="shortcut icon" href="'+os.path.join(os.path.dirname(__file__),'favicon.ico')+'"  filename="favicon.ico"><link rel="stylesheet" type="text/css" href="'+os.path.join(os.path.dirname(__file__),'mystyle.css')+'"  filename="mystyle.css"></head><body><div class="centered"><table>';
 		
 	rowChange = 1;
 
