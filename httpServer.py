@@ -10,9 +10,9 @@ def initialization():
 	global defaultPage;
 	global mainFile;
 
+
 	config = configparser.ConfigParser();
-	relDir = os.path.dirname(os.path.abspath(__file__))
-	config.read(relDir+'\conf\configuration.cfg');		
+	config.read(os.path.join(os.path.dirname(__file__)+\'conf', r"configuration.cfg"))		
 	defaultPage = config.get('System','defaultPage');
 	mainFile = config.get('System','mainFile');
 
