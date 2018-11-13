@@ -18,7 +18,7 @@ def initialization():
 	files = os.listdir(os.path.dirname(os.path.abspath(__file__)))
 	for name in files:
 		print(name)	
-	config.read(os.path.join(os.path.dirname(__file__)+'\conf', r"configuration.cfg"))
+	config.read(os.path.join(os.path.dirname(__file__)+'/conf', r"configuration.cfg"))
 	defaultPage = config.get('System','defaultPage');
 	mainFile = config.get('System','mainFile');
 
