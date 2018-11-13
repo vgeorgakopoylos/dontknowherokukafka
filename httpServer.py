@@ -39,10 +39,20 @@ def decideURL(requestURL):
 		return mainFile  + defaultPage +'()';
 	else:
 		return mainFile +requestURL[1:findWrapper(requestURL,'?')]+'('+breakdownParams(requestURL)+')'	
- 
+ 	
 class MyRequestHandler(http.server.BaseHTTPRequestHandler):
 	def do_GET(self):
-		 return http.server.BaseHTTPRequestHandler.send_response(self,self.wfile.write(eval(decideURL(self.path))));
+		self.send_response(200)
+		self.send_header('Content-type','text/html')
+		self.end_headers()
+
+		if self.path == '/favicon.ico':
+			return;
+		else:
+			url = decideURL(self.path)
+			responseMessage=eval(decideURL(self.path));
+			self.wfile.write(responseMessage);
+			return;
 		 
 
 initialization()
