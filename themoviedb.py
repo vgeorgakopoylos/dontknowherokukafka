@@ -42,7 +42,7 @@ def producePagingHTML(totalViewPages, pageTag, placeholder, upcomingMoviesPages,
 	htmlPage = '';
 	
 	if moviePage != 1 and showPrevNext==True:
-		htmlPage = htmlPage + pageTag.replace(placeholder,str(moviePage-1),1).replace(placeholder,'Previous');
+		htmlPage = htmlPage + pageTag.replace(placeholder,str(int(moviePage-1)),1).replace(placeholder,'Previous');
 			
 	for i in range(1,totalViewPages+1):
 		if totalViewPages >= upcomingMoviesPages:
@@ -55,18 +55,18 @@ def producePagingHTML(totalViewPages, pageTag, placeholder, upcomingMoviesPages,
 			elif moviePage+(totalViewPages/2)<=upcomingMoviesPages and moviePage-(math.floor(totalViewPages/2))<=0:
 				currentPage = i;				
 			
-		htmlPage = htmlPage + pageTag.replace(placeholder,str(currentPage));
+		htmlPage = htmlPage + pageTag.replace(placeholder,str(int(currentPage)));
 		if currentPage==upcomingMoviesPages:
 			break;
 	if moviePage != upcomingMoviesPages:
-		htmlPage = htmlPage + pageTag.replace(placeholder,str(moviePage+1),1).replace(placeholder,'&nbsp&nbspNext');	
+		htmlPage = htmlPage + pageTag.replace(placeholder,str(int(moviePage+1)),1).replace(placeholder,'Next');	
 	
 	return htmlPage;
 #function definitions end
 def upcomingMovies(moviePage=1):
 	initialization();
 	
-	html = '<!DOCTYPE html><html><head><link rel="shortcut icon" href="'+os.path.join(os.path.dirname(__file__),'favicon.ico')+'"  filename="favicon.ico"><link rel="stylesheet" type="text/css" href="'+os.path.join(os.path.dirname(__file__),'mystyle.css')+'"  filename="mystyle.css"></head><body><div class="centered"><table>';
+	html = '<html><head><meta charset="utf-8"/><link rel="stylesheet" type="text/css" href="css/themoviedb.css"><link rel="shortcut icon" href="favicon.ico"/></head><body><div class="centered"><table border="1">';
 		
 	rowChange = 1;
 
@@ -75,7 +75,7 @@ def upcomingMovies(moviePage=1):
 	upcomingMoviesOverall = json.loads(response.text);
 	upcomingMoviesPages = upcomingMoviesOverall['total_pages'];
 	upcomingMovies = upcomingMoviesOverall['results'];
-		
+
 	for movie in upcomingMovies:
 		if rowChange == 1:
 			html = html+'<tr>';
@@ -86,14 +86,11 @@ def upcomingMovies(moviePage=1):
 			html = html+'</tr>';
 			rowChange = 0;
 		rowChange = rowChange+1;
-		
 	
-	html = html + '<tr align="center"><td>';
-	
+	html = html + '<tr><td colspan="2">';
 	html = html + producePagingHTML(10, '<a href=\"upcomingMovies?moviePage=@#\">@#</a>  ', '@#', upcomingMoviesPages, moviePage, True);
-	
-	html = html + '</tr></td>'	
-	html = html + '</table></body></div></html>';
+	html = html + '</td></tr>';
+	html = html + '</table></div></body></html>';
 	return html.encode('utf-8');
 
 	
