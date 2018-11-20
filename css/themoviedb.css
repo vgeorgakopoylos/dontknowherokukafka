@@ -5,7 +5,8 @@ div.upcomingAll
 
 div.upcomingAll table 
 {
-    margin: 0 auto; 
+	width: 600px;
+    margin: auto; 
     text-align: center;
 }
 

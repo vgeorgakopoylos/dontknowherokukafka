@@ -81,6 +81,7 @@ def initHTML(cssFilesConc,jsFilesConc):
 	for jsFile in jsFilesSplit:
 		if jsFile is not None:
 			intiHTMLvar = intiHTMLvar+'<script src="'+jsFile+'"></script>';
+			
 	return intiHTMLvar
 
 def finalizeHTML():	
@@ -104,7 +105,6 @@ def upcomingMovies(moviePage=1):
 	upcomingTotalPages = upcomingMoviesOverall['total_pages'];
 	upcomingMovies = upcomingMoviesOverall['results'];
 	
-
 	for movie in upcomingMovies:
 		if rowChange == 1:
 			html = html+'<tr>';
@@ -126,6 +126,7 @@ def upcomingMovies(moviePage=1):
 	html = html + producePagingHTML(10, '<a href="upcomingMovies?moviePage=@#">@#</a>  ', '@#', upcomingTotalPages, moviePage, True);
 	html = html + '</td></tr></table></div>';
 	html = html + finalizeHTML();	
+	
 	return html;
 
 def movieDesc(movieid,relatedMoviePage=1):
@@ -168,7 +169,10 @@ def movieRelated(movieid, moviePage=1):
 		descriptionRow = descriptionRow + '<a href="movieDesc?movieid='+str(relatedMovieRes['id'])+'">'+relatedMovieRes['title']+'</a>'
 		descriptionRow = descriptionRow + '</td>'
 		imageRow = imageRow + '<td>'
-		imageRow = imageRow +  '<a href="movieDesc?movieid='+str(relatedMovieRes['id'])+'"><img src='+imageURL+imageWidthThump+relatedMovieRes['poster_path']+'></a>';
+		if relatedMovieRes['poster_path'] is not None:
+			imageRow = imageRow +  '<a href="movieDesc?movieid='+str(relatedMovieRes['id'])+'"><img src='+imageURL+imageWidthThump+relatedMovieRes['poster_path']+'></a>';
+		else:
+			imageRow = imageRow +  '<a href="movieDesc?movieid='+str(relatedMovieRes['id'])+'"><img src="images/noposter.jpg"></a>';
 		imageRow = imageRow + '</td>'
 	
 	html = html + '<tr>' + descriptionRow + '</tr>'
