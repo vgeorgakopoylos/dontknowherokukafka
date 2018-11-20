@@ -1,21 +1,41 @@
-table
-{ 
-    margin-left: auto;
-    margin-right: auto;
-}
-
-div.centered 
+div.upcomingAll 
 {
     text-align: center;
 }
 
-div.centered table 
+div.upcomingAll table 
 {
     margin: 0 auto; 
     text-align: center;
 }
 
-tr.centered
+div.movieDesc
 {
-	text-align: middle
+	margin: auto;
 }
+div.movieDesc table 
+{ 
+	width: 600px;
+	margin: auto; 
+	text-align: left;
+}
+
+
+div.horizontalMovies
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+	height:260px;
+	overflow-x:scroll	
+}
+
+div.horizontalMovies table
+{
+	text-align: center;
+	overflow-x:scroll
+}
+
+
+
+

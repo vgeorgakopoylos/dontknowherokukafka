@@ -15,7 +15,7 @@ def initialization():
 	config.read(os.path.join(os.path.dirname(__file__), 'conf', 'configuration.cfg'));
 	defaultPage = config.get('System','defaultPage');
 	mainFile = config.get('System','mainFile');
-	contentType ={"png":"image/png","jpg":"images/jpeg","gif":"images/gif","ico":"image/x-icon"};
+	contentType ={"png":"image/png","jpg":"images/jpeg","gif":"images/gif","ico":"image/x-icon","js":"text/javascript","css":"text/css"};
 
 def breakdownParams(link):
 	returnedParams = '';
@@ -51,25 +51,21 @@ class MyRequestHandler(http.server.BaseHTTPRequestHandler):
 				self.send_response(200);
 				self.wfile.write(f.read());				
 				return;
-		elif self.path.endswith(".css"):
+		elif self.path.endswith(".css") or self.path.endswith(".js"):
 			with open(os.path.relpath(self.path, '/')) as f:
 				self.send_response(200);
-				self.send_header('Content-type', 'text/css');
-				self.end_headers();
 				self.wfile.write(f.read().encode());
 				return;
 			
 		elif contentType.get(self.path[self.path.rfind(".")+1:], 'None')!='None':
-			with open(os.path.relpath(self.path, '/'),'rb') as f:
-				print ("****:"+self.path);			
+			with open(os.path.relpath(self.path, '/'),'rb') as f:	
 				self.send_response(200);
 				self.wfile.write(f.read());	
-		
 				return;		
 		else:
 			url = decideURL(self.path);
 			responseMessage=eval(decideURL(self.path));
-			self.wfile.write(responseMessage);
+			self.wfile.write(responseMessage.encode());
 			return;
 		 
 
@@ -78,4 +74,4 @@ Handler = MyRequestHandler;
 server = socketserver.TCPServer(('', int(os.environ['PORT'])), Handler);
 server.serve_forever();	
 
-		
+
